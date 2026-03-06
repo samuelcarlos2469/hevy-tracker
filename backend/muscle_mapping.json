@@ -1,0 +1,46 @@
+{
+    "Peitoral": {
+        "exercises": [
+            "Incline Chest Press (Machine)",
+            "Chest Press (Machine)",
+            "Bench Press (Barbell)",
+            "Chest Fly (Machine)",
+            "Push Up",
+            "Decline Bench Press (Machine)"
+        ],
+        "multiplier": 1.0,
+        "synergists": {
+            "Tríceps": 0.4,
+            "Deltoide Anterior": 0.5
+        }
+    },
+    "Costas": {
+        "exercises": [
+            "Lat Pulldown (Cable)",
+            "Iso-Lateral High Row (Machine)",
+            "Bent Over Row (Barbell)",
+            "Chin Up",
+            "Pull Up",
+            "Seated Cable Row - Bar Wide Grip",
+            "Pullover (Machine)"
+        ],
+        "multiplier": 1.0,
+        "synergists": {
+            "Bíceps": 0.4,
+            "Deltoide Posterior": 0.3
+        }
+    },
+    "Quadríceps": {
+        "exercises": [
+            "Leg Extension (Machine)",
+            "Leg Press (Machine)",
+            "Hack Squat (Machine)",
+            "Pendulum Squat (Machine)",
+            "Lunge (Barbell)"
+        ],
+        "multiplier": 1.0,
+        "synergists": {
+            "Glúteo": 0.4
+        }
+    }
+}
