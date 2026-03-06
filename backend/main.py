@@ -29,18 +29,19 @@ def list_exercises(db: Session = Depends(get_db)):
     ]
 
 @app.get("/metrics/volume/{muscle_id}")
-def get_muscle_volume(muscle_id: int, db: Session = Depends(get_db)):
-    # Query complexa com JOIN para calcular o volume indireto
-    results = db.query(
+def get_muscle_volume(muscle_id: int, gym: str = None, db: Session = Depends(get_db)):
+    query = db.query(
         func.date_trunc('week', Workout.date).label('week'),
         func.sum(WorkoutSet.reps * WorkoutSet.weight * ExerciseMuscleMap.multiplier).label('volume')
     ).join(WorkoutSet, Workout.id == WorkoutSet.workout_id)\
      .join(ExerciseMuscleMap, WorkoutSet.exercise_id == ExerciseMuscleMap.exercise_id)\
-     .filter(ExerciseMuscleMap.muscle_id == muscle_id)\
-     .group_by('week')\
-     .order_by('week')\
-     .all()
+     .filter(ExerciseMuscleMap.muscle_id == muscle_id)
     
+    # Adiciona o filtro por academia se o usuário enviar
+    if gym:
+        query = query.filter(Workout.gym == gym)
+        
+    results = query.group_by('week').order_by('week').all()
     return [{"week": r.week, "volume": r.volume} for r in results]
 
 @app.get("/metrics/progression/{exercise_id}")

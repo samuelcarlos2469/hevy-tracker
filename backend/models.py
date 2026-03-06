@@ -9,6 +9,7 @@ class Workout(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String)
     date = Column(DateTime)
+    gym = Column(String, nullable=True)
     sets = relationship("WorkoutSet", back_populates="workout")
 
 class Exercise(Base):
